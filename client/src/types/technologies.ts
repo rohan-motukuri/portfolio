@@ -1,0 +1,1 @@
+export type Technologies = "react.js" | "node.js" | "express.js" | "next.js" | "git" | "fastapi" | "javascript" | "html" | "css" | "typescript" | "firebase" | "ai" | "ml" | "llm"
