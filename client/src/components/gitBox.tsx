@@ -4,6 +4,7 @@ import { Contributors } from "@/types/contributors";
 import { CardEventTypeColorMap, CardsEventType } from "@/types/cardType";
 import { ReactNode } from "react";
 import Pill from "./pill";
+import { Button } from "./ui/button";
 
 export type CustomActionsGitBox = {
     name: string;
@@ -33,7 +34,9 @@ export interface GitBoxProps {
 export default function GitBox({
     title,
     className,
-    presetStyles,
+    presetStyles = {
+        border: true
+    },
     description,
     type,
     image,
@@ -42,19 +45,20 @@ export default function GitBox({
     contributersList,
     hashId,
 }: GitBoxProps) {
+    let innerClassName = "";
     if (presetStyles?.border) {
-        className += " border-[1px] border-neutral-700";
+        innerClassName += " border-[1px] border-neutral-700";
     }
 
     return (
         <>
             <div className={`w-full h-fit ${className}`}>
                 <div
-                    className={`w-full h-40 rounded-lg bg-neutral-950 flex flex-col p-5`}
+                    className={`w-full h-40 rounded-lg bg-neutral-950 hover:bg-stone-800 flex flex-col p-5 ${innerClassName}`}
                 >
                     {/* Header - Ttile, Type, Actions */}
                     <div className="flex gap-2 justify-between">
-                        <span className="text-md flex-1">{title}</span>
+                        <span className="text-md flex-1 font-bold">{title}</span>
                         <span className="min-w-fit">
                             {type && (
                                 <Pill
@@ -66,9 +70,9 @@ export default function GitBox({
                         </span>
                         <div className="min-w-fit flex gap-2 justify-between">
                             {customActionButtons?.map((customAction) => (
-                                <button onClick={() => customAction.action}>
+                                <Button onClick={() => customAction.action()}>
                                     {customAction.name}
-                                </button>
+                                </Button>
                             ))}
                         </div>
                     </div>
