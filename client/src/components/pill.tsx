@@ -116,7 +116,7 @@ export default function Pill({
 
     return (
         <div
-            className={`w-fit rounded-2xl  border-[1px]  px-4 py-1 text-xs ${background} ${border} ${text} ${className} `}
+            className={`w-fit rounded-2xl border-[1px] px-4 py-1 text-xs ${background} ${border} ${text} ${className} `}
         >
             {content}
         </div>

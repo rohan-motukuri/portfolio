@@ -54,7 +54,7 @@ export default function GitBox({
         <>
             <div className={`w-full h-fit ${className}`}>
                 <div
-                    className={`w-full h-40 rounded-lg bg-neutral-950 hover:bg-stone-800 flex flex-col p-5 ${innerClassName}`}
+                    className={`w-full h-40 rounded-lg bg-zinc-100 dark:bg-zinc-950 flex flex-col p-5 ${innerClassName}`}
                 >
                     {/* Header - Ttile, Type, Actions */}
                     <div className="flex gap-2 justify-between">
@@ -64,7 +64,7 @@ export default function GitBox({
                                 <Pill
                                     content={type}
                                     color={CardEventTypeColorMap[type]}
-                                    className=" drop-shadow-lg"
+                                    className=""
                                 />
                             )}
                         </span>

@@ -1,10 +1,12 @@
 "use client";
 import GitBox from "@/components/gitBox";
+import { ThemeSwitcher } from "@/components/themeSwitcher";
 import Image from "next/image";
 
 export default function Home() {
     return (
         <main className="flex min-h-screen w-screen flex-col items-center justify-between bg-background">
+            <ThemeSwitcher/>
             <GitBox
                 title="Hello World"
                 className="p-3"
