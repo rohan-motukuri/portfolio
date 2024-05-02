@@ -1,24 +1,27 @@
 "use client";
 import GitBox from "@/components/gitBox";
 import { ThemeSwitcher } from "@/components/themeSwitcher";
+import { LucideAlarmCheck } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
     return (
         <main className="flex min-h-screen w-screen flex-col items-center justify-between bg-background">
-            <ThemeSwitcher/>
             <GitBox
                 title="Hello World"
                 className="p-3"
                 type="Project"
+                image={""}
 				customActionButtons={[
 					{
 						name: "Hi",
-						action: ()=>console.log("Hi")
+						action: ()=>console.log("Hi"),
+                        icon: <LucideAlarmCheck/>
 					}
 				]}
                 hashId="1"
             />
+            <ThemeSwitcher/>
         </main>
     );
 }
