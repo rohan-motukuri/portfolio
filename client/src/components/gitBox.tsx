@@ -5,6 +5,14 @@ import { CardEventTypeColorMap, CardsEventType } from "@/types/cardType";
 import { ReactNode } from "react";
 import Pill from "./pill";
 import { Button, buttonVariants } from "./ui/button";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "./ui/carousel";
+import { Card, CardContent } from "./ui/card";
 
 export type CustomActionsGitBox = {
     name: string;
@@ -55,10 +63,10 @@ export default function GitBox({
         <>
             <div className={`w-full h-fit ${className}`}>
                 <div
-                    className={`w-full h-40 rounded-lg bg-zinc-100 dark:bg-zinc-950 flex flex-col p-5 ${innerClassName}`}
+                    className={`w-full h-fit rounded-lg bg-zinc-100 dark:bg-zinc-950 flex flex-col gap-1 p-5 ${innerClassName}`}
                 >
                     {/* Header - Ttile, Type, Actions */}
-                    <div className="flex gap-2 justify-between items-center">
+                    <div className="flex gap-2 h-fit justify-between items-center">
                         {/* Title */}
                         <span className="text-md flex-1 font-bold">
                             {title}
@@ -89,33 +97,67 @@ export default function GitBox({
                     </div>
 
                     {/* Description, Addons, Image(s) */}
-                    <div className="flex justify-between">
-                        <p>{description}</p>
-                        <RenderImage_or_S image_s={image}/>
-                    </div>
+                    {(!!description?.length || !!image?.length) && (
+                        <div className="flex justify-between h-fit">
+                            <p className=" text-sm ">{description}</p>
+                            <RenderImage_or_S
+                                image_s={image}
+                                parentCardHash={hashId}
+                            />
+                        </div>
+                    )}
 
                     {/* Footer - Contributions */}
-                    <div className="">
-                        
-                    </div>
+                    {contributersList?.length ?? <div className=""></div>}
                 </div>
             </div>
         </>
     );
 }
 
-function RenderImage_or_S ({image_s}:{image_s:GitBoxProps["image"]}) {
-    if(image_s) {
-        if(typeof image_s === "string") {
-            return <img src={image_s}/>
+function RenderImage_or_S({
+    image_s,
+    className = "w-40 h-40",
+    parentCardHash,
+}: {
+    image_s: GitBoxProps["image"];
+    className?: string;
+    parentCardHash: string;
+}) {
+    if (image_s) {
+        if (typeof image_s === "string") {
+            return (
+                <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                        <img src={image_s} />
+                    </CardContent>
+                </Card>
+            );
         } else {
-            return <>
-                {
-                    image_s.map(image => {
-                        <img src={image}/>
-                    })
-                }
-            </> 
+            return (
+                <Carousel className="w-32">
+                    <CarouselContent>
+                        {image_s.map((image, index) => (
+                            <CarouselItem
+                                key={
+                                    "GitCard_" +
+                                    parentCardHash +
+                                    "ImageContent_" +
+                                    index
+                                }
+                            >
+                                <div className="">
+                                    <Card>
+                                        <CardContent className="flex aspect-square items-center justify-center p-6">
+                                            <img src={image} />
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                </Carousel>
+            );
         }
     }
 }

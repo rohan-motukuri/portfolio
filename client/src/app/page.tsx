@@ -11,13 +11,14 @@ export default function Home() {
                 title="Hello World"
                 className="p-3"
                 type="Project"
-                image={""}
+                image={["https://user-images.githubusercontent.com/150803/119069882-87c95700-ba19-11eb-8cef-02d1e021d1a2.png", "https://user-images.githubusercontent.com/150803/119069882-87c95700-ba19-11eb-8cef-02d1e021d1a2.png"]}
+                description={"lorem ipsum"}
 				customActionButtons={[
 					{
 						name: "Hi",
 						action: ()=>console.log("Hi"),
                         icon: <LucideAlarmCheck/>
-					}
+					},
 				]}
                 hashId="1"
             />
