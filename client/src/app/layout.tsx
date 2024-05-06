@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
     title: "Rohan's Portfolio",
     description:
-        "Portfolio website showcasing projects and technocal expertise of the innovative software developer named Rohan Motukuri",
+        "Rohan Sai Venkat Motukuri's portfolio showcasing projects and technical expertise",
 };
 
 export default function RootLayout({
@@ -19,7 +19,11 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`overflow-hidden ${inter.className}`}>
-                <Providers>{children}</Providers>
+                <Providers>
+                    <div className="w-screen h-screen flex items-center justify-center">
+                        {children}
+                    </div>
+                </Providers>
             </body>
         </html>
     );
